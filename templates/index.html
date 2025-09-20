@@ -1,0 +1,484 @@
+<!-- 
+Archivo principal de la página web.
+Aquí se usa HTML para la estructura del contenido, 
+CSS para los estilos (desde styles.css a un poco de JavaScript) 
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuidado del Medio Ambiente</title>
+
+  <!-- Fuente externa (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+  <!-- Iconos externos (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Conexión al archivo de estilos -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}?v=1">
+  <!-- AOS Animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+<header>
+  <h1>Cuidado del Medio Ambiente</h1>
+  <p>Reducir, reutilizar y reciclar para un futuro sostenible</p>
+</header>
+
+<!-- Menú de navegación -->
+<nav>
+  <a href="#" onclick="showSection('intro')"><i class="fas fa-seedling"></i> Introducción</a>
+  <a href="#" onclick="showSection('residuos')"><i class="fas fa-trash"></i> Residuos</a>
+  <a href="#" onclick="showSection('reciclaje')"><i class="fas fa-recycle"></i> Reciclaje</a>
+  <a href="#" onclick="showSection('acciones')"><i class="fas fa-hand-holding-heart"></i> Acciones</a>
+  <a href="#" onclick="showSection('cuestionario')"><i class="fas fa-question-circle"></i> Cuestionario</a>
+</nav>
+
+<!-- Secciones principales (ejemplo: home, intro, residuos...) -->
+<section id="home" class="card section-visible">
+  <h2>Bienvenido</h2>
+  <p>Explora cómo tus acciones diarias influyen en el medio ambiente y cómo podemos reducir el desperdicio de residuos para proteger nuestro planeta.</p>
+</section>
+
+<!-- Sección Introducción -->
+<section id="intro" class="card section-hidden">
+  <h2>Introducción</h2>
+  <div class="grid">
+    <div>
+      <div class="info-box"><i class="fas fa-globe"></i>
+        <p><strong>Un planeta en riesgo:</strong> El cambio climático, la contaminación del aire, agua y suelo, junto con el exceso de basura, son desafíos globales.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-leaf"></i>
+        <p><strong>¿Qué podemos hacer?</strong> Con pequeñas acciones diarias, como reciclar, reducir plásticos de un solo uso y consumir responsablemente, podemos generar un gran impacto.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-industry"></i>
+        <p><strong>Impacto industrial:</strong> La producción masiva de bienes genera residuos tóxicos y emisiones contaminantes.</p>
+      </div>
+    </div>
+    <div>
+      <img src="static/images/intro.jpg" alt="Naturaleza limpia" class="responsive-img"/>
+    </div>
+  </div>
+  <button class="btn" onclick="goHome()">Volver al inicio</button>
+</section>
+
+<!-- Sección Residuos -->
+
+<section id="residuos" class="card section-hidden">
+  <h2>Tipos de residuos</h2>
+  <div class="grid">
+    <div>
+      <div class="info-box"><i class="fas fa-apple-alt"></i>
+        <p><strong>Orgánicos:</strong> Restos de comida, cáscaras y materiales biodegradables que pueden convertirse en compost.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-bottle-water"></i>
+        <p><strong>Plásticos:</strong> Muy contaminantes, tardan cientos de años en degradarse.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-battery-full"></i>
+        <p><strong>Peligrosos:</strong> Pilas, baterías, aceites y químicos que requieren manejo especial.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-boxes"></i>
+        <p><strong>Inorgánicos reciclables:</strong> Vidrios, latas y papel que pueden volver a usarse si se separan adecuadamente.</p>
+      </div>
+    </div>
+    <div>
+      <img src="static/images/residuos.jpg" alt="Clasificación de residuos" class="responsive-img"/>
+    </div>
+  </div>
+  <button class="btn" onclick="goHome()">Volver al inicio</button>
+</section>
+
+<!-- Sección Reciclaje -->
+
+<section id="reciclaje" class="card section-hidden">
+  <h2>Reciclaje</h2>
+  <div class="grid">
+    <div>
+      <div class="info-box"><i class="fas fa-recycle"></i>
+        <p><strong>Beneficios:</strong> El reciclaje ahorra energía, reduce la contaminación y disminuye la extracción de recursos naturales.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-box"></i>
+        <p><strong>Reutilizar:</strong> Antes de botar algo, piensa si puede tener un nuevo uso.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-landmark"></i>
+        <p><strong>Economía circular:</strong> Este modelo busca que los productos vuelvan a entrar en la cadena productiva.</p>
+      </div>
+      <div class="info-box"><i class="fas fa-graduation-cap"></i>
+        <p><strong>Educación ambiental:</strong> Aprender desde pequeños a separar residuos crea generaciones más responsables.</p>
+      </div>
+    </div>
+    <div>
+      <img src="static/images/reciclaje.jpg" alt="Reciclaje" class="responsive-img"/>
+    </div>
+  </div>
+  <button class="btn" onclick="goHome()">Volver al inicio</button>
+</section>
+
+<!-- Sección Acciones -->
+
+<section id="acciones" class="card section-hidden">
+  <h2>Acciones que puedes tomar</h2>
+  <div class="grid">
+    <div class="info-box"><i class="fas fa-shopping-bag"></i>
+      <p><strong>Usa bolsas reutilizables:</strong> Evita las bolsas plásticas que tardan siglos en desaparecer.</p>
+    </div>
+    <div class="info-box"><i class="fas fa-water"></i>
+      <p><strong>Ahorra agua:</strong> Cierra la llave al cepillarte los dientes o al lavar platos.</p>
+    </div>
+    <div class="info-box"><i class="fas fa-lightbulb"></i>
+      <p><strong>Ahorra energía:</strong> Apaga luces, desconecta aparatos y opta por focos LED.</p>
+    </div>
+    <div class="info-box"><i class="fas fa-bus"></i>
+      <p><strong>Transporte sustentable:</strong> Usa bicicleta, camina o comparte viajes.</p>
+    </div>
+    <div class="info-box"><i class="fas fa-utensils"></i>
+      <p><strong>Consumo responsable:</strong> Prefiere productos locales, de temporada y con menos empaques.</p>
+    </div>
+  </div>
+  <img src="static/images/acciones.jpg" alt="Acciones ecológicas" class="responsive-img"/>
+  <button class="btn" onclick="goHome()">Volver al inicio</button>
+</section>
+
+<!-- SECCIÓN CUESTIONARIO -->
+<!-- 20 preguntas en total: 10 personales (q1..q10) + 10 de conocimiento (q11..q20) -->
+<section id="cuestionario" class="card section-hidden">
+  <h2>Cuestionario</h2>
+  <p>Responde las preguntas honestamente. Cada opción tiene un valor (0 a 3). Las primeras 10 preguntas evalúan tus hábitos; las siguientes 10, tus conocimientos.</p>
+
+  <form id="quizForm">
+    <h3>Parte A: Preguntas personales (hábitos)</h3>
+
+    <div class="info-box">
+      <p>1. ¿Con qué frecuencia reciclas en casa?</p>
+      <label><input type="radio" name="q1" value="3"> A) Siempre</label><br>
+      <label><input type="radio" name="q1" value="2"> B) A veces</label><br>
+      <label><input type="radio" name="q1" value="1"> C) Rara vez</label><br>
+      <label><input type="radio" name="q1" value="0"> D) Nunca</label>
+    </div>
+
+    <div class="info-box">
+      <p>2. ¿Usas bolsas reutilizables al hacer compras?</p>
+      <label><input type="radio" name="q2" value="3"> A) Siempre</label><br>
+      <label><input type="radio" name="q2" value="2"> B) Casi siempre</label><br>
+      <label><input type="radio" name="q2" value="1"> C) A veces</label><br>
+      <label><input type="radio" name="q2" value="0"> D) Nunca</label>
+    </div>
+
+    <div class="info-box">
+      <p>3. ¿Cómo sueles transportarte?</p>
+      <label><input type="radio" name="q3" value="3"> A) Bicicleta/caminando</label><br>
+      <label><input type="radio" name="q3" value="2"> B) Transporte público</label><br>
+      <label><input type="radio" name="q3" value="1"> C) Auto compartido</label><br>
+      <label><input type="radio" name="q3" value="0"> D) Auto personal siempre</label>
+    </div>
+
+    <div class="info-box">
+      <p>4. ¿Apagas luces y aparatos eléctricos cuando no los usas?</p>
+      <label><input type="radio" name="q4" value="3"> A) Siempre</label><br>
+      <label><input type="radio" name="q4" value="2"> B) Casi siempre</label><br>
+      <label><input type="radio" name="q4" value="1"> C) A veces</label><br>
+      <label><input type="radio" name="q4" value="0"> D) Nunca</label>
+    </div>
+
+    <div class="info-box">
+      <p>5. ¿Consumes productos locales y de temporada?</p>
+      <label><input type="radio" name="q5" value="3"> A) Siempre</label><br>
+      <label><input type="radio" name="q5" value="2"> B) A menudo</label><br>
+      <label><input type="radio" name="q5" value="1"> C) Rara vez</label><br>
+      <label><input type="radio" name="q5" value="0"> D) Nunca</label>
+    </div>
+
+    <div class="info-box">
+      <p>6. ¿Separan residuos en tu casa (orgánicos, reciclables, peligrosos)?</p>
+      <label><input type="radio" name="q6" value="3"> A) Sí, todos los días</label><br>
+      <label><input type="radio" name="q6" value="2"> B) Algunas veces</label><br>
+      <label><input type="radio" name="q6" value="1"> C) Muy poco</label><br>
+      <label><input type="radio" name="q6" value="0"> D) Nunca</label>
+    </div>
+
+    <div class="info-box">
+      <p>7. ¿Cuánto tiempo dejas correr el agua al cepillarte?</p>
+      <label><input type="radio" name="q7" value="3"> A) La cierro siempre</label><br>
+      <label><input type="radio" name="q7" value="2"> B) A veces la cierro</label><br>
+      <label><input type="radio" name="q7" value="1"> C) La dejo abierta un rato</label><br>
+      <label><input type="radio" name="q7" value="0"> D) Siempre la dejo abierta</label>
+    </div>
+
+    <div class="info-box">
+      <p>8. ¿Sueles evitar productos con mucho empaque plástico?</p>
+      <label><input type="radio" name="q8" value="3"> A) Siempre busco alternativas</label><br>
+      <label><input type="radio" name="q8" value="2"> B) A menudo</label><br>
+      <label><input type="radio" name="q8" value="1"> C) Rara vez</label><br>
+      <label><input type="radio" name="q8" value="0"> D) Nunca me fijo</label>
+    </div>
+
+    <div class="info-box">
+      <p>9. ¿Participas en actividades comunitarias (limpieza, reciclaje) al menos una vez al año?</p>
+      <label><input type="radio" name="q9" value="3"> A) Sí, regularmente</label><br>
+      <label><input type="radio" name="q9" value="2"> B) Algunas veces</label><br>
+      <label><input type="radio" name="q9" value="1"> C) Nunca pero me interesa</label><br>
+      <label><input type="radio" name="q9" value="0"> D) Nunca y no me interesa</label>
+    </div>
+
+    <div class="info-box">
+      <p>10. ¿Reutilizas botes, frascos u otros envases en casa?</p>
+      <label><input type="radio" name="q10" value="3"> A) Siempre</label><br>
+      <label><input type="radio" name="q10" value="2"> B) A veces</label><br>
+      <label><input type="radio" name="q10" value="1"> C) Rara vez</label><br>
+      <label><input type="radio" name="q10" value="0"> D) Nunca</label>
+    </div>
+
+    <h3>Parte B: Preguntas de conocimiento</h3>
+
+    <div class="info-box">
+      <p>11. ¿Cuál de estos residuos es biodegradable?</p>
+      <label><input type="radio" name="q11" value="3"> A) Cáscaras de fruta</label><br>
+      <label><input type="radio" name="q11" value="0"> B) Botellas de plástico</label><br>
+      <label><input type="radio" name="q11" value="0"> C) Vidrio</label><br>
+      <label><input type="radio" name="q11" value="0"> D) Baterías</label>
+    </div>
+
+    <div class="info-box">
+      <p>12. ¿Cuánto tarda en degradarse una botella de plástico?</p>
+      <label><input type="radio" name="q12" value="0"> A) 5 años</label><br>
+      <label><input type="radio" name="q12" value="1"> B) 50 años</label><br>
+      <label><input type="radio" name="q12" value="2"> C) 200 años</label><br>
+      <label><input type="radio" name="q12" value="3"> D) Más de 400 años</label>
+    </div>
+
+    <div class="info-box">
+      <p>13. ¿Qué significa “economía circular”?</p>
+      <label><input type="radio" name="q13" value="3"> A) Reutilizar y reciclar productos para que vuelvan a la cadena productiva</label><br>
+      <label><input type="radio" name="q13" value="0"> B) Comprar más para aumentar la producción</label><br>
+      <label><input type="radio" name="q13" value="0"> C) Usar energía renovable únicamente</label><br>
+      <label><input type="radio" name="q13" value="0"> D) Recolectar basura sin clasificar</label>
+    </div>
+
+    <div class="info-box">
+      <p>14. ¿Qué gas es el principal causante del efecto invernadero?</p>
+      <label><input type="radio" name="q14" value="3"> A) Dióxido de carbono</label><br>
+      <label><input type="radio" name="q14" value="0"> B) Oxígeno</label><br>
+      <label><input type="radio" name="q14" value="0"> C) Hidrógeno</label><br>
+      <label><input type="radio" name="q14" value="0"> D) Nitrógeno</label>
+    </div>
+
+    <div class="info-box">
+      <p>15. ¿Cuál de estas acciones ahorra más agua?</p>
+      <label><input type="radio" name="q15" value="0"> A) Lavar el auto con manguera</label><br>
+      <label><input type="radio" name="q15" value="3"> B) Usar balde para lavar el auto</label><br>
+      <label><input type="radio" name="q15" value="0"> C) Dejar correr el agua al lavar platos</label><br>
+      <label><input type="radio" name="q15" value="0"> D) Regar a mediodía</label>
+    </div>
+
+    <div class="info-box">
+      <p>16. ¿Qué color de contenedor suele ser para el vidrio?</p>
+      <label><input type="radio" name="q16" value="0"> A) Amarillo</label><br>
+      <label><input type="radio" name="q16" value="0"> B) Azul</label><br>
+      <label><input type="radio" name="q16" value="3"> C) Verde</label><br>
+      <label><input type="radio" name="q16" value="0"> D) Rojo</label>
+    </div>
+
+    <div class="info-box">
+      <p>17. ¿Qué significa la regla de las “3R”?</p>
+      <label><input type="radio" name="q17" value="3"> A) Reducir, Reutilizar, Reciclar</label><br>
+      <label><input type="radio" name="q17" value="0"> B) Reusar, Regalar, Renovar</label><br>
+      <label><input type="radio" name="q17" value="0"> C) Recolectar, Restaurar, Reparar</label><br>
+      <label><input type="radio" name="q17" value="0"> D) Recoger, Repartir, Rotar</label>
+    </div>
+
+    <div class="info-box">
+      <p>18. ¿Qué es el compost?</p>
+      <label><input type="radio" name="q18" value="0"> A) Un fertilizante químico</label><br>
+      <label><input type="radio" name="q18" value="0"> B) Un tipo de plástico biodegradable</label><br>
+      <label><input type="radio" name="q18" value="0"> C) Una técnica para quemar residuos</label><br>
+      <label><input type="radio" name="q18" value="3"> D) Materia orgánica descompuesta que enriquece el suelo</label>
+    </div>
+
+    <div class="info-box">
+      <p>19. ¿Cuál es un ejemplo de fuente de energía renovable?</p>
+      <label><input type="radio" name="q19" value="0"> A) Carbón</label><br>
+      <label><input type="radio" name="q19" value="3"> B) Solar</label><br>
+      <label><input type="radio" name="q19" value="0"> C) Gas natural</label><br>
+      <label><input type="radio" name="q19" value="0"> D) Petróleo</label>
+    </div>
+
+    <div class="info-box">
+      <p>20. ¿Por qué es importante separar residuos peligrosos (p. ej. baterías)?</p>
+      <label><input type="radio" name="q20" value="3"> A) Para evitar contaminación y permitir tratamiento seguro</label><br>
+      <label><input type="radio" name="q20" value="0"> B) Porque ocupan mucho espacio</label><br>
+      <label><input type="radio" name="q20" value="0"> C) Porque huelen mal</label><br>
+      <label><input type="radio" name="q20" value="0"> D) No es importante separarlos</label>
+    </div>
+
+    <button type="button" class="btn" onclick="verResultados()">Ver resultados</button>
+  </form>
+
+  <!-- Contenedor donde se mostrarán los resultados -->
+  <div id="quizResults" style="margin-top:20px; display:none;" class="card"></div>
+
+  <button class="btn" onclick="goHome()">Volver al inicio</button>
+</section>
+
+<!-- Sección de comentarios -->
+
+<section id="comentarios" class="card" style="margin: 2rem auto;">
+  <h2>Comentarios</h2>
+  <p>¿Qué te pareció este sitio? ¿Qué agregarías o cambiarías?</p>
+  <form action="https://formspree.io/f/meozldwe" method="POST" style="margin-top: 1.5rem;">
+    <label for="nombre">Nombre:</label><br/>
+    <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 0.5rem; margin-top: 0.3rem; border-radius: 8px; border: none; margin-bottom: 1rem;"><br/>
+    <label for="comentario">Comentario:</label><br/>
+    <textarea id="comentario" name="comentario" rows="5" required style="width: 100%; padding: 0.5rem; margin-top: 0.3rem; border-radius: 8px; border: none;"></textarea><br/>
+    <button type="submit" class="btn">Enviar comentario</button>
+  </form>
+</section>
+
+<!-- Footer con año dinámico (lo obtiene Flask desde main.py) -->
+<footer>
+  <p>© {{ year }} Proyecto Medio Ambiente — Creado por Roberto Manríquez</p>
+</footer>
+
+<!-- SCRIPTS (manejo de secciones y resultados) -->
+<script>
+  /*
+    showSection(id): función mejorada que oculta todas las <section>
+    y muestra solo la solicitada. Antes había una lista fija y por eso
+    se olvidaba "cuestionario" — ahora usamos querySelectorAll para evitar bugs.
+  */
+  function showSection(id) {
+    // Selecciona todas las secciones excepto comentarios
+    const sections = document.querySelectorAll('section:not(#comentarios)');
+    sections.forEach(sec => {
+      sec.classList.remove('section-visible');
+      sec.classList.add('section-hidden');
+    });
+
+    // Muestra solo la sección pedida (si existe)
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.remove('section-hidden');
+      target.classList.add('section-visible');
+    }
+
+    // Si salimos de cuestionario, ocultamos la caja de resultados (por si quedó visible)
+    if (id !== 'cuestionario') {
+      const r = document.getElementById('quizResults');
+      if (r) { r.style.display = 'none'; r.innerHTML = ''; }
+    }
+  }
+
+  function goHome() { showSection('home'); }
+
+  /*
+    verResultados(): calcula puntajes de las primeras 10 preguntas (hábitos)
+    y de las últimas 10 (conocimientos). Cada pregunta vale 0..3.
+    Luego muestra puntaje obtenido, total y un comentario interpretativo.
+  */
+  function verResultados() {
+    const form = document.getElementById('quizForm');
+    const resultsDiv = document.getElementById('quizResults');
+
+    let personalScore = 0;   // suma de respuestas q1..q10
+    let knowledgeScore = 0;  // suma de respuestas q11..q20
+    let personalTotal = 0;   // total máximo (10 preguntas * 3)
+    let knowledgeTotal = 0;  // total máximo (10 preguntas * 3)
+
+    // Recorremos todas las preguntas (1..20)
+    for (let i = 1; i <= 20; i++) {
+      const el = form['q' + i];
+      // Cada pregunta suma 3 al total correspondiente (aunque no respondan)
+      if (i <= 10) personalTotal += 3; else knowledgeTotal += 3;
+
+      if (!el) continue; // por seguridad, si no existe la pregunta
+
+      // Encontrar la opción marcada (si hay)
+      let selected = Array.from(el).find(r => r.checked);
+      if (selected) {
+        const val = parseInt(selected.value) || 0;
+        if (i <= 10) personalScore += val; else knowledgeScore += val;
+      }
+    }
+
+    // Función para interpretar según porcentaje
+    function interpretar(score, total, tipo) {
+      const pct = (total === 0) ? 0 : Math.round((score / total) * 100);
+      let etiqueta = '';
+      let comentario = '';
+
+      if (pct >= 80) {
+        etiqueta = 'Excelente 🌱♻️';
+        comentario = (tipo === 'habitos')
+          ? 'Tus hábitos son muy buenos: reciclas, evitas plásticos y ahorras recursos. Sigue así.'
+          : 'Tienes un dominio alto: conoces los conceptos clave y aplicas buenas prácticas.';
+      } else if (pct >= 60) {
+        etiqueta = 'Bueno 👍';
+        comentario = (tipo === 'habitos')
+          ? 'Tienes buenos hábitos, pero aún puedes mejorar en algunas áreas (por ejemplo: separación más constante o reducir empaques).' 
+          : 'Tienes una base sólida, repasa algunos conceptos para alcanzar un dominio mayor.';
+      } else if (pct >= 40) {
+        etiqueta = 'Regular 😶';
+        comentario = (tipo === 'habitos')
+          ? 'Tienes hábitos regulares, puedes mejorar en algunas áreas (por ejemplo: separación más constante o reducir empaques).' 
+          : 'Debes repasar algunos conceptos para alcanzar un buen dominio.';
+      } else if (pct >= 20) {
+        etiqueta = 'Bajo ⚠️';
+        comentario = (tipo === 'habitos')
+          ? 'Tus hábitos pueden mejorar: intenta incorporar pequeñas acciones diarias como separar residuos o ahorrar agua.' 
+          : 'Tu conocimiento es limitado: sería útil repasar conceptos básicos sobre reciclaje, compost y economía circular.';
+      } else {
+        etiqueta = 'Muy Bajo ‼️';
+        comentario = (tipo === 'habitos')
+          ? 'Deberías cambiar tus hábitos: debes incorporar pequeñas acciones diarias como separar residuos o ahorrar agua.'
+          : 'Tu conocimiento es muy limitado: sería útil investigar para conocer sobre conceptos básicos sobre reciclaje, compost y economía circular.';
+      }
+
+      return {pct, etiqueta, comentario};
+    }
+
+    const per = interpretar(personalScore, personalTotal, 'habitos');
+    const kno = interpretar(knowledgeScore, knowledgeTotal, 'conocimientos');
+
+    // Mostramos resultados detallados con puntajes y explicación
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = `
+      <h3>Resultados del cuestionario</h3>
+
+      <p><strong>Hábitos personales:</strong> obtuviste <b>${personalScore}</b> de <b>${personalTotal}</b> puntos
+      (${per.pct}%). <em>${per.etiqueta}</em></p>
+      <p>${per.comentario}</p>
+
+      <hr>
+
+      <p><strong>Conocimientos:</strong> obtuviste <b>${knowledgeScore}</b> de <b>${knowledgeTotal}</b> puntos
+      (${kno.pct}%). <em>${kno.etiqueta}</em></p>
+      <p>${kno.comentario}</p>
+
+      <p style="margin-top:0.5rem; font-style:italic; color:var(--muted);">Nota: cada pregunta vale 0–3 puntos. Las primeras 10 preguntas miden hábitos (cómo contribuyes), las últimas 10 miden conocimientos (qué tanto sabes).</p>
+    `;
+
+    // Nos aseguramos de que la sección cuestionario esté visible
+    showSection('cuestionario');
+    // Hacemos scroll al resultado para que se vea al exponer
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+</body>
+</html>
+
+<!-- El cuestionario funciona con un sistema de puntajes donde cada respuesta tiene un valor numérico (0, 1, 2 o 3).
+ En las preguntas personales, el 3 representa el mejor hábito ecológico y el 0 el peor, mientras que en las preguntas
+  de conocimiento el 3 corresponde a la respuesta correcta y el 0 a la incorrecta (algunas respuestas intermedias
+   pueden valer 1 o 2 si se acercan a lo correcto). Al final, se suman los puntos de las primeras 7 preguntas para
+    medir el nivel de hábitos ambientales y los de las últimas 7 para medir el nivel de conocimientos. Según el
+     puntaje total, se clasifica el resultado en categorías como “Excelente”, “Bueno”, “Bajo” o “Muy bajo”. -->
